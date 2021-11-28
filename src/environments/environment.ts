@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiKey: '8F19A2B9-1FCD-4724-BC7F-6CEFB4451AD2',
+  baseUrl: 'https://rest.coinapi.io/',
 };
 
 /*
