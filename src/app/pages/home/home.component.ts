@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { CoinsService } from 'src/app/services/coins.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private coinsService: CoinsService) {}
 
   ngOnInit(): void {
-    this.http.get('v1/exchanges').subscribe(console.log);
+    this.coinsService.dispatchGetAllCoins();
   }
 }
