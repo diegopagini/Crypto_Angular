@@ -9,9 +9,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { CoinsReducer } from './store/reducers/coins.reducer';
-import { CoinsEffects } from './store/effects/coins.effect';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApiInterceptor } from './interceptors/api.interceptor';
+import { SharedComponentsModule } from './shared/components/shared-components.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +20,7 @@ import { ApiInterceptor } from './interceptors/api.interceptor';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    SharedComponentsModule,
     StoreModule.forRoot({ app: CoinsReducer }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
