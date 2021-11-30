@@ -18,6 +18,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { CdkTableModule } from '@angular/cdk/table';
 
 const modules = [
   MatButtonModule,
@@ -39,6 +41,8 @@ const modules = [
   MatSortModule,
   MatPaginatorModule,
   MatSnackBarModule,
+  DragDropModule,
+  CdkTableModule,
 ];
 
 @NgModule({

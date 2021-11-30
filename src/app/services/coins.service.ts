@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Coin } from '../models/coin.interface';
 import { getCoins } from '../store/actions/coins.actions';
 
 @Injectable({
@@ -10,8 +11,8 @@ import { getCoins } from '../store/actions/coins.actions';
 export class CoinsService {
   constructor(private http: HttpClient, private store: Store) {}
 
-  getAllCoins(): Observable<any> {
-    return this.http.get('v1/exchanges');
+  getAllCoins(): Observable<Coin[]> {
+    return this.http.get<Coin[]>('v1/exchanges');
   }
 
   dispatchGetAllCoins() {

@@ -1,1 +1,238 @@
-<p>table works!</p>
+<ng-container *ngIf="coins$ | async">
+  <div class="filter">
+    <mat-form-field>
+      <input
+        autocomplete="off"
+        matInput
+        type="text"
+        (keyup)="doFilter($event)"
+        placeholder="Filter"
+      />
+    </mat-form-field>
+  </div>
+
+  <mat-table
+    [dataSource]="dataSource"
+    matSort
+    cdkDropList
+    cdkDropListOrientation="horizontal"
+    (cdkDropListDropped)="drop($event)"
+  >
+    >
+    <ng-container matColumnDef="exchange_id">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >exchange_id</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.exchange_id }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="website">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >website</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.website }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >name</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_start">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_start</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_start | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_end">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_end</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_end | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_quote_start">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_quote_start</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_quote_start | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_quote_end">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_quote_end</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_quote_end | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_symbols_count">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_symbols_count</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_symbols_count
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="volume_1hrs_usd">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >volume_1hrs_usd</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.volume_1hrs_usd | currency
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="volume_1day_usd">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >volume_1day_usd</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.volume_1day_usd | currency
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="volume_1mth_usd">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >volume_1mth_usd</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.volume_1mth_usd | currency
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_orderbook_start">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_orderbook_start</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_orderbook_start | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_orderbook_end">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_orderbook_end</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_orderbook_end | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_trade_start">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_trade_start</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_trade_start | date
+      }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="data_trade_end">
+      <mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        cdkDrag
+        cdkDragLockAxis="x"
+        cdkDragBoundary="mat-header-row"
+        >data_trade_end</mat-header-cell
+      >
+      <mat-cell *matCellDef="let element">{{
+        element.data_trade_end | date
+      }}</mat-cell>
+    </ng-container>
+
+    <!-- Headers -->
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <!-- End of Headers -->
+    <!-- Columns -->
+    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    <!-- End of Columns -->
+  </mat-table>
+
+  <mat-paginator
+    [pageSize]="10"
+    [pageSizeOptions]="[10, 25, 50]"
+  ></mat-paginator>
+</ng-container>
