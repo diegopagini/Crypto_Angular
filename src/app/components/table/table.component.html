@@ -1,4 +1,4 @@
-<ng-container *ngIf="coins$ | async">
+<ng-container *ngIf="coins$ | async as coins; else loading">
   <div class="filter">
     <mat-form-field>
       <input
@@ -40,7 +40,11 @@
         cdkDragBoundary="mat-header-row"
         >website</mat-header-cell
       >
-      <mat-cell *matCellDef="let element">{{ element.website }}</mat-cell>
+      <mat-cell
+        *matCellDef="let element"
+        (click)="navigateToWebSite(element)"
+        >{{ element.website }}</mat-cell
+      >
     </ng-container>
 
     <ng-container matColumnDef="name">
@@ -236,3 +240,7 @@
     [pageSizeOptions]="[10, 25, 50]"
   ></mat-paginator>
 </ng-container>
+
+<ng-template #loading>
+  <app-spinner></app-spinner>
+</ng-template>

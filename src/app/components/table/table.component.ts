@@ -66,4 +66,8 @@ export class TableComponent implements OnInit, AfterViewInit {
       event.currentIndex
     );
   }
+
+  navigateToWebSite(element: Coin) {
+    console.log(element);
+  }
 }

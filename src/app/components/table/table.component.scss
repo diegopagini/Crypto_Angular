@@ -10,6 +10,11 @@
   }
 }
 
+.mat-header-cell {
+  text-align: center;
+  text-transform: capitalize;
+}
+
 .mat-cell {
   text-align: center;
   word-break: break-all;
