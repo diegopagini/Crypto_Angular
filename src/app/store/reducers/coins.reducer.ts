@@ -4,6 +4,7 @@ import {
   getCoins,
   getCoinsFail,
   getCoinsSuccess,
+  getCoinSuccess,
 } from '../actions/coins.actions';
 
 export const initialState = {
@@ -29,6 +30,11 @@ export const CoinsReducer = createReducer(
   })),
   on(getCoin, (state, { payload }) => ({
     ...state,
+    loading: true,
+  })),
+  on(getCoinSuccess, (state, { payload }) => ({
+    ...state,
     currentCoint: payload,
+    loading: false,
   }))
 );

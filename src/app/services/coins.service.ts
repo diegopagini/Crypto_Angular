@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Coin } from '../models/coin.interface';
-import { getCoins } from '../store/actions/coins.actions';
+import { getCoin, getCoins } from '../store/actions/coins.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -17,5 +17,9 @@ export class CoinsService {
 
   dispatchGetAllCoins() {
     this.store.dispatch(getCoins());
+  }
+
+  dispatchGetCoin(payload: Coin) {
+    this.store.dispatch(getCoin({ payload }));
   }
 }

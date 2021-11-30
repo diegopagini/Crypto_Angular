@@ -1,1 +1,2 @@
-<app-table [coins$]="coins$"></app-table>
+<app-table *ngIf="!(loading$ | async)" [coins$]="coins$"></app-table>
+<app-spinner *ngIf="loading$ | async"></app-spinner>

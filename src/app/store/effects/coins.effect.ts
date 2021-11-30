@@ -1,8 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { concatMap, map } from 'rxjs/operators';
+import { Action, Store } from '@ngrx/store';
+import { Observable, throwError } from 'rxjs';
+import { catchError, concatMap, delay, map } from 'rxjs/operators';
+import { Coin } from 'src/app/models/coin.interface';
 import { CoinsService } from 'src/app/services/coins.service';
 import {
   getCoins,
@@ -16,11 +18,20 @@ export class CoinsEffects {
     this.actions$.pipe(
       ofType(getCoins),
       map((action: Action) => {
+        // console.log(action);
         const serviceResponse$ = this.coinsService.getAllCoins();
         return serviceResponse$;
       }),
-      concatMap((serviceResponse) => serviceResponse),
-      map((serviceResponse: any) => {
+      delay(2500),
+      concatMap((serviceResponse: Observable<Coin[]>) => {
+        // serviceResponse.subscribe(console.log);
+        return serviceResponse;
+      }),
+      catchError((error: HttpErrorResponse) => {
+        this.store.dispatch(getCoinsFail());
+        return throwError(error);
+      }),
+      map((serviceResponse: Coin[]) => {
         if (serviceResponse) {
           return getCoinsSuccess({ payload: serviceResponse });
         } else {
@@ -30,5 +41,9 @@ export class CoinsEffects {
     )
   );
 
-  constructor(private actions$: Actions, private coinsService: CoinsService) {}
+  constructor(
+    private actions$: Actions,
+    private coinsService: CoinsService,
+    private store: Store
+  ) {}
 }

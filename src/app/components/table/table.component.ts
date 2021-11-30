@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { Coin } from 'src/app/models/coin.interface';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CoinsService } from 'src/app/services/coins.service';
 
 @Component({
   selector: 'app-table',
@@ -44,6 +45,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     'data_trade_end',
   ];
 
+  constructor(private coinsService: CoinsService) {}
+
   ngOnInit(): void {
     this.coins$.pipe(filter((coins) => !!coins)).subscribe((data: Coin[]) => {
       this.dataSource.data = data;
@@ -67,7 +70,8 @@ export class TableComponent implements OnInit, AfterViewInit {
     );
   }
 
-  navigateToWebSite(element: Coin) {
-    console.log(element);
+  onClickRow(coin: Coin) {
+    console.log(coin);
+    this.coinsService.dispatchGetCoin(coin);
   }
 }
