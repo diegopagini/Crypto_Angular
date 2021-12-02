@@ -19,3 +19,5 @@ export const getCoinSuccess = createAction(
   '[Table] Get A Single Coin Success',
   props<{ payload: Coin }>()
 );
+
+export const getCoinFail = createAction('[Effect] Get A Coin Fail');

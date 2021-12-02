@@ -71,7 +71,6 @@ export class TableComponent implements OnInit, AfterViewInit {
   }
 
   onClickRow(coin: Coin) {
-    console.log(coin);
     this.coinsService.dispatchGetCoin(coin);
   }
 }

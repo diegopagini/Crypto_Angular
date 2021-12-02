@@ -2,14 +2,17 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
-import { Observable, throwError } from 'rxjs';
-import { catchError, concatMap, delay, map } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, delay, map, tap } from 'rxjs/operators';
 import { Coin } from 'src/app/models/coin.interface';
 import { CoinsService } from 'src/app/services/coins.service';
 import {
+  getCoin,
+  getCoinFail,
   getCoins,
   getCoinsFail,
   getCoinsSuccess,
+  getCoinSuccess,
 } from '../actions/coins.actions';
 
 @Injectable()
@@ -36,6 +39,19 @@ export class CoinsEffects {
           return getCoinsSuccess({ payload: serviceResponse });
         } else {
           return getCoinsFail();
+        }
+      })
+    )
+  );
+
+  loadCoin$: Observable<any> = createEffect(() =>
+    this.actions$.pipe(
+      ofType(getCoin),
+      map((action) => {
+        if (action.payload) {
+          return getCoinSuccess({ payload: action.payload });
+        } else {
+          return getCoinFail();
         }
       })
     )

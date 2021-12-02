@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import {
   getCoin,
+  getCoinFail,
   getCoins,
   getCoinsFail,
   getCoinsSuccess,
@@ -35,6 +36,11 @@ export const CoinsReducer = createReducer(
   on(getCoinSuccess, (state, { payload }) => ({
     ...state,
     currentCoint: payload,
+    loading: false,
+  })),
+  on(getCoinFail, (state, action) => ({
+    ...state,
+    currentCoint: {},
     loading: false,
   }))
 );
