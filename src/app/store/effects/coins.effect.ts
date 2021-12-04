@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, ofType, createEffect } from '@ngrx/effects';
 import { Action, Store } from '@ngrx/store';
 import { Observable, of, throwError } from 'rxjs';
@@ -49,6 +50,7 @@ export class CoinsEffects {
       ofType(getCoin),
       map((action) => {
         if (action.payload) {
+          this.router.navigate([`/coin/${action.payload.exchange_id}`]);
           return getCoinSuccess({ payload: action.payload });
         } else {
           return getCoinFail();
@@ -60,6 +62,7 @@ export class CoinsEffects {
   constructor(
     private actions$: Actions,
     private coinsService: CoinsService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 }
