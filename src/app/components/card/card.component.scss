@@ -1,0 +1,19 @@
+:host .card {
+  margin: 2rem;
+  padding: 1rem;
+
+  &-title,
+  &-subtitle,
+  &-content,
+  &-website {
+    text-align: center;
+    width: 100%;
+  }
+
+  &-website {
+    cursor: pointer;
+    display: block;
+    margin: 0.5rem 0;
+    text-decoration: none;
+  }
+}
