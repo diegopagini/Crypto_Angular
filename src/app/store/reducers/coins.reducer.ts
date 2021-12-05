@@ -27,7 +27,7 @@ export const CoinsReducer = createReducer(
   })),
   on(getCoinsFail, (state, action) => ({
     ...state,
-    loading: false,
+    loading: true,
   })),
   on(getCoin, (state, { payload }) => ({
     ...state,
