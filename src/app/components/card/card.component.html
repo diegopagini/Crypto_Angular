@@ -2,34 +2,51 @@
   <mat-card-title class="card-title">{{ coin.exchange_id }}</mat-card-title>
   <mat-card-subtitle class="card-subtitle">{{ coin.name }}</mat-card-subtitle>
   <mat-card-content>
-    <a [href]="coin.website" target="_blank" class="card-website"
+    <a
+      *ngIf="coin.website"
+      [href]="coin.website"
+      target="_blank"
+      class="card-website"
       >Website: {{ coin.website }}</a
     >
-    <p class="card-content">Trade start: {{ coin.data_trade_start | date }}</p>
-    <p class="card-content">Trade end: {{ coin.data_trade_end | date }}</p>
-    <p class="card-content">
+    <p *ngIf="coin.data_trade_start" class="card-content">
+      Trade start: {{ coin.data_trade_start | date }}
+    </p>
+    <p *ngIf="coin.data_trade_end" class="card-content">
+      Trade end: {{ coin.data_trade_end | date }}
+    </p>
+    <p *ngIf="coin.data_orderbook_start" class="card-content">
       Orderbook start: {{ coin.data_orderbook_start | date }}
     </p>
-    <p class="card-content">
+    <p *ngIf="coin.data_orderbook_end" class="card-content">
       Orderbook end: {{ coin.data_orderbook_end | date }}
     </p>
-    <p class="card-content">Quote start: {{ coin.data_quote_start | date }}</p>
-    <p class="card-content">Quote end: {{ coin.data_quote_end | date }}</p>
-    <p class="card-content">Start: {{ coin.data_start | date }}</p>
-    <p class="card-content">End: {{ coin.data_end | date }}</p>
-    <p class="card-content">
+    <p *ngIf="coin.data_quote_start" class="card-content">
+      Quote start: {{ coin.data_quote_start | date }}
+    </p>
+    <p *ngIf="coin.data_quote_end" class="card-content">
+      Quote end: {{ coin.data_quote_end | date }}
+    </p>
+    <p *ngIf="coin.data_start" class="card-content">
+      Start: {{ coin.data_start | date }}
+    </p>
+    <p *ngIf="coin.data_end" class="card-content">
+      End: {{ coin.data_end | date }}
+    </p>
+    <p *ngIf="coin.volume_1mth_usd" class="card-content">
       Volume 1 month in usd: {{ coin.volume_1mth_usd | currency }}
     </p>
-    <p class="card-content">
+    <p *ngIf="coin.volume_1day_usd" class="card-content">
       Volume 1 day in usd: {{ coin.volume_1day_usd | currency }}
     </p>
-    <p class="card-content">
+    <p *ngIf="coin.volume_1hrs_usd" class="card-content">
       Volume 1 hour in usd: {{ coin.volume_1hrs_usd | currency }}
     </p>
-    <p class="card-content">Symbots count: {{ coin.data_symbols_count }}</p>
+    <p *ngIf="coin.data_symbols_count" class="card-content">
+      Symbols count: {{ coin.data_symbols_count }}
+    </p>
   </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
+  <mat-card-actions class="card-actions">
+    <button routerLink="/home" color="primary" mat-raised-button>BACK</button>
   </mat-card-actions>
 </mat-card>

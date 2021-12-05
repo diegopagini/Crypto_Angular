@@ -16,4 +16,10 @@
     margin: 0.5rem 0;
     text-decoration: none;
   }
+
+  &-actions {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 }
